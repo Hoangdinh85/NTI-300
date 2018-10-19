@@ -1,0 +1,9 @@
+#!bin/bash
+
+#find a user in /etc/passwd take input for search
+finduser=$(grep -ic "$1" /etc/passwd );
+if [ $finduser -gt 0 ];
+    then echo "I found $1';
+else
+    echo "I didn't find $1";
+fi
