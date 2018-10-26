@@ -21,7 +21,7 @@ yum install python36
 virtualenv -p python36 django
 source django/bin/activate
 pip install django
-django-admin --version #python 2.1.2
+#django-admin --version #python 2.1.2
 
 
 ##start project1
@@ -38,3 +38,8 @@ source /opt/django/django/bin/activate
 
 ##make the firewall rule in google cloud
 ##click on the ip address on instance, then remove the "s" in HTTP and add 8000 to the ip address
+
+
+##Allow ip address
+grep -iR ALLOWED /opt/django/project1
+vim /opt/django/project1/project1/settings.py
