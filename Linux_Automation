@@ -1,5 +1,0 @@
-#!bin/bash
-yum -y install git
-git clone https://github.com/Hoangdinh85/NTI-300/blob/master/Linux_Automation
-git congif --global user.name "Hoangdinh85"
-git config --global user.email hdinh47056@gmail.com
