@@ -43,3 +43,5 @@ source /opt/django/django/bin/activate
 ##Allow ip address
 grep -iR ALLOWED /opt/django/project1
 vim /opt/django/project1/project1/settings.py
+
+sudo -u hdinh47056  sh -c " source /opt/django/django/bin/activate && python manage.py runserver 0.0.0.0:8000&"
