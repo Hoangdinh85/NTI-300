@@ -1,0 +1,11 @@
+#install git python-pip
+yum install git python-pip
+
+#upgrade pip
+pip install --upgrade pip
+
+#install google-api-python-client
+pip install google-api-python-client
+
+#install oauth2client
+pip install oauth2client
