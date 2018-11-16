@@ -18,7 +18,7 @@ name = 'test1'
 
 
 
-def list_instances(compute, project, zone)
+def list_instances(compute, project, zone, name)
 result = compute.instances().list(project=project, zone=zone).execute()
 return result['items']
 
