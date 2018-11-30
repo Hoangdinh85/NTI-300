@@ -18,21 +18,20 @@ name = 'test1'
 
 
 
-def list_instances(compute, project, zone)
-result = compute.instances().list(project=project, zone=zone).execute()
-return result['items']
+def list_instances(compute, project, zone):
+	result = compute.instances().list(project=project, zone=zone).execute()
+	return result['items']
 
 
-def create_instance(compute, project, zone, name)
-startup_script = open('startup-script.sh', 'r').read()
-    image_respone = compute-images().getFromFamily(
+def create_instance(compute, project, zone):
+    startup_script = open('startup-script.sh', 'r').read()
+    image_response = compute.images().getFromFamily(
         project='centos-cloud', family='centos-7').execute()
-
-source_disk_image - image_response['selfLink']
-machine_type = "zones/%s/machineTypes/fi-micro" % zone
+    source_disk_image = image_response['selfLink']
+    machine_type = "zones/%s/machineTypes/f1-micro" % zone
 
 #configure the machine
-config = {
+    config = {
         'name': name,
         'machineType': machine_type,
 
@@ -55,7 +54,7 @@ config = {
                 {'type': 'ONE_TO_ONE_NAT', 'name': 'External NAT'}
             ]
         }],
-  # Allow the instance to access cloud storage and logging.
+ # Allow the instance to access cloud storage and logging.
         'serviceAccounts': [{
             'email': 'default',
             'scopes': [
@@ -65,24 +64,24 @@ config = {
         }],
         
 #Enable https/http for select instance
-"labels": {
-"http-server": "",
-"https-server": "",
-},
+            "labels": {
+            "http-server": "",
+            "https-server": ""
+            },
 
-"tags": {
-"items": [
-"http-server",
-"https-server",
+            "tags": {
+            "items": [
+            "http-server",
+            "https-server",
 ]
 },
 
 # Metadata is readable from the instance and allows you to
-        # pass configuration from deployment scripts to instances.
-        'metadata': {
-            'items': [{
+# pass configuration from deployment scripts to instances.
+	'metadata': {
+     	     'items': [{
 # Startup script is automatically executed by the
-                # instance upon startup.
+# instance upon startup.
                 'key': 'startup-script',
                 'value': startup_script
             }]
@@ -94,9 +93,8 @@ config = {
         body=config).execute()
 
 
-newinstance = create_instance(comopute, project, zone, name)
-instances = list_instances(compute, project, zone)
-
-pprint.pprint(newinstance)
-pprint.pprint(instances)
+newinstances = create_instance(compute, project, zone)
+instance = list_instances(compute, project, zone)
+pprint.pprint(newinstances)
+pprint.pprint(instance)
 
