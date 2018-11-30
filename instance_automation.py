@@ -18,9 +18,15 @@ name = 'test1'
 
 
 
+<<<<<<< HEAD
 def list_instances(compute, project, zone):
 	result = compute.instances().list(project=project, zone=zone).execute()
 	return result['items']
+=======
+def list_instances(compute, project, zone, name)
+result = compute.instances().list(project=project, zone=zone).execute()
+return result['items']
+>>>>>>> 186ef2f8ea72faa877d1698bbf8f953a542c7301
 
 
 def create_instance(compute, project, zone):

@@ -2,34 +2,25 @@
 import os
 
 #install python
- os.system('yum -y install python-pip")
+ os.system('yum -y install python-pip')
  os.system('pip install virtualenv')
  os.system('pip install --upgrade pip')
-
-
 #make a directory call /opt/django
  os.mkdir('/opt/django')
  os.chdir('/opt/django')
-
 #running pyhton 2 to  python3.6#
- os.system('yum  install python36')
+ os.system('yum -y install python36')
  os.system('virtualenv -p python36 django')
  os.system('source django/bin/activate && pip install django')
-
 #currectly in 2.7 && need to source to 3.6#
  os.chdir('/opt/django')
  os.system('source /opt/django/django/bin/activate ' + \
            '&& django-admin --version ' + \
            '&& django-admin startproject project1')
-           
 #start project1#
 os.system('django-admin startproject project1')
-
 #change ownership#
 os.system('chown -R hdinh47056 django')
 os.system('chown -R hdinh47056 project1')
-
 #start the django server#
 os.system('sudo -u hdinh47056  sh -c "source /opt/django/django/bin/activate && python /opt/django/project1/manage.py runserver 0.0.0.0:8000&" ')
-
-
