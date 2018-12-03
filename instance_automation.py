@@ -96,8 +96,8 @@ def create_instance(compute, project, zone):
         body=config).execute()
 
 
-newinstances = create_instance(compute, project, zone)
+newinstance = create_instance(compute, project, zone)
 instance = list_instances(compute, project, zone)
-pprint.pprint(newinstances)
+pprint.pprint(newinstance)
 pprint.pprint(instance)
 
