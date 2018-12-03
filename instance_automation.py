@@ -3,9 +3,10 @@
 from oauth2client.client import GoogleCredentials
 from googleapiclient import discovery
 
-import googleapiclient
+
 import pprint
-import json
+
+
 
 credentials = GoogleCredentials.get_application_default()
 compute = discovery.build('compute', 'v1', credentials=credentials)
@@ -16,14 +17,15 @@ zone = "us-east1-b"
 #What kind of machine is being requested and what should its name be
 #based on the machine type we can derive a name
 
-name = 'test1'
+name = 'test2'
 
 
 
 
 def list_instances(compute, project, zone):
-	result = compute.instances().list(project=project, zone=zone).execute()
-	return result['items']
+        result = compute.instances().list(project=project, zone=zone).execute()
+        return result['items']
+
 
 
 def create_instance(compute, project, zone):
@@ -35,7 +37,7 @@ def create_instance(compute, project, zone):
 
 #configure the machine
     config = {
-        'name': name,
+                'name': name,
         'machineType': machine_type,
 
         # Specify the boot disk and the image to use as a source.
@@ -48,7 +50,7 @@ def create_instance(compute, project, zone):
                 }
             }
         ],
-        
+
  # Specify a network interface with NAT to access the public
         # internet.
         'networkInterfaces': [{
@@ -65,7 +67,7 @@ def create_instance(compute, project, zone):
                 'https://www.googleapis.com/auth/logging.write'
             ]
         }],
-        
+
 #Enable https/http for select instance
             "labels": {
             "http-server": "",
@@ -81,8 +83,8 @@ def create_instance(compute, project, zone):
 
 # Metadata is readable from the instance and allows you to
 # pass configuration from deployment scripts to instances.
-	'metadata': {
-     	     'items': [{
+        'metadata': {
+             'items': [{
 # Startup script is automatically executed by the
 # instance upon startup.
                 'key': 'startup-script',
@@ -96,8 +98,7 @@ def create_instance(compute, project, zone):
         body=config).execute()
 
 
-newinstance = create_instance(compute, project, zone)
+newinstances = create_instance(compute, project, zone)
 instance = list_instances(compute, project, zone)
-pprint.pprint(newinstance)
+pprint.pprint(newinstances)
 pprint.pprint(instance)
-
