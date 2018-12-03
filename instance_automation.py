@@ -25,7 +25,7 @@ def list_instances(compute, project, zone):
 
 
 def create_instance(compute, project, zone):
-    startup_script = open('startup-script.sh', 'r').read()
+    startup_script = open('Install_Python-pip', 'r').read()
     image_response = compute.images().getFromFamily(
         project='centos-cloud', family='centos-7').execute()
     source_disk_image = image_response['selfLink']
