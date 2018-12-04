@@ -9,15 +9,15 @@ import pprint
 
 
 credentials = GoogleCredentials.get_application_default()
-compute = discovery.build('compute', 'v1', credentials=credentials)
+compute = googleapiclient.discovery.build('compute', 'v1', credentials=credentials)
 
-project = 'linen-diorama-217802'
+project = "linen-diorama-217802"
 zone = "us-east1-b"
 
 #What kind of machine is being requested and what should its name be
 #based on the machine type we can derive a name
 
-name = 'test2'
+name = "test2"
 
 
 
@@ -28,7 +28,7 @@ def list_instances(compute, project, zone):
 
 
 
-def create_instance(compute, project, zone):
+def create_instance(compute, project, zone, name):
     startup_script = open('Install_Python-pip', 'r').read()
     image_response = compute.images().getFromFamily(
         project='centos-cloud', family='centos-7').execute()
