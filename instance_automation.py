@@ -28,7 +28,7 @@ def list_instances(compute, project, zone):
 
 
 
-def create_instance(compute, project, zone):
+def create_instance(compute, project, zone, name):
     startup_script = open('Install_Python-pip.py', 'r').read()
     image_response = compute.images().getFromFamily( project='centos-cloud', family='centos-7').execute()
     source_disk_image = image_response['selfLink']
@@ -97,7 +97,7 @@ def create_instance(compute, project, zone):
         body=config).execute()
 
 
-newinstance = create_instance(compute, project, zone)
+newinstance = create_instance(compute, project, zone, name)
 instance = list_instances(compute, project, zone)
 
 pprint.pprint(newinstance)
