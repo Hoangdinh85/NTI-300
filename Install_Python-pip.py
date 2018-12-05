@@ -18,6 +18,6 @@ os.system('source /opt/django/django/bin/activate && pip install django' + \
 #change ownership#
 os.system('chown -R hdinh47056 /opt/django')
 #os.system('chown -R hdinh47056 project1')
-#os.system("myip=$(curl -s checkip.dyndns.org | sed -e 's/.*Current Ip Address: //' -e 's/<.*$//') && sed -i \"s/ALLOWED_HOSTS = \[\]/ALLOWED_HOSTS = \[\'$myip\'\]/g\" /opt/django/project1/project1/settings.py")
+os.system("myip=$(curl -s checkip.dyndns.org | sed -e 's/.*Current Ip Address: //' -e 's/<.*$//') && sed -i \"s/ALLOWED_HOSTS = \[\]/ALLOWED_HOSTS = \[\'$myip\'\]/g\" /opt/django/project1/project1/settings.py")
 #start the django server#
 os.system('sudo -u hdinh47056 sh -c "source /opt/django/django/bin/activate && python /opt/django/project1/manage.py runserver 0.0.0.0:8000&" ')
