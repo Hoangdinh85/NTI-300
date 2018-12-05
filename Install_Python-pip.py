@@ -12,7 +12,7 @@ os.system('yum -y install python36')
 os.system('virtualenv -p python36 django')
 #os.system('source /opt/django/django/bin/activate && pip install django')
 #os.chdir('/opt/django')
-os.system('source /opt/django/django/bin/activate pip install django' + \
+os.system('source /opt/django/django/bin/activate && pip install django' + \
            '&& django-admin --version ' + \
            '&& django-admin startproject project1')
 #change ownership#
