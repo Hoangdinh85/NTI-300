@@ -3,9 +3,9 @@
 from oauth2client.client import GoogleCredentials
 from googleapiclient import discovery
 
-
+import googleapiclient
 import pprint
-
+import json
 
 
 credentials = GoogleCredentials.get_application_default()
@@ -17,7 +17,7 @@ zone = "us-east1-b"
 #What kind of machine is being requested and what should its name be
 #based on the machine type we can derive a name
 
-name = "test2"
+name = "final"
 
 
 
@@ -28,10 +28,9 @@ def list_instances(compute, project, zone):
 
 
 
-def create_instance(compute, project, zone, name):
-    startup_script = open('Install_Python-pip', 'r').read()
-    image_response = compute.images().getFromFamily(
-        project='centos-cloud', family='centos-7').execute()
+def create_instance(compute, project, zone):
+    startup_script = open('Install_Python-pip.py', 'r').read()
+    image_response = compute.images().getFromFamily( project='centos-cloud', family='centos-7').execute()
     source_disk_image = image_response['selfLink']
     machine_type = "zones/%s/machineTypes/f1-micro" % zone
 
@@ -77,9 +76,9 @@ def create_instance(compute, project, zone, name):
             "tags": {
             "items": [
             "http-server",
-            "https-server",
-]
-},
+            "https-server"
+            ]
+            },
 
 # Metadata is readable from the instance and allows you to
 # pass configuration from deployment scripts to instances.
@@ -98,7 +97,8 @@ def create_instance(compute, project, zone, name):
         body=config).execute()
 
 
-newinstances = create_instance(compute, project, zone)
+newinstance = create_instance(compute, project, zone)
 instance = list_instances(compute, project, zone)
-pprint.pprint(newinstances)
+
+pprint.pprint(newinstance)
 pprint.pprint(instance)
